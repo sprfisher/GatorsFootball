@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Template</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f9;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .question {
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+        .options button {
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 10px;
+            font-size: 16px;
+            background: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .options button:hover {
+            background: #0056b3;
+        }
+        .message {
+            margin-top: 20px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 20px;
+            background: #f8f9fa;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="quiz">
+            <div class="question" id="question"></div>
+            <div class="options" id="options"></div>
+        </div>
+        <div class="message" id="message"></div>
+    </div>
+
+    <script>
+        let questions = [   {
+        question: "What year did the Florida Gators football team play their first game?",
+        options: ["A. 1906", "B. 1910", "C. 1901", "D. 1920"],
+        answer: "A"
+    },
+    {
+        question: "Who was the first Florida Gators head coach to win a national championship?",
+        options: ["A. Steve Spurrier", "B. Urban Meyer", "C. Galen Hall", "D. Doug Dickey"],
+        answer: "A"
+    },
+    {
+        question: "In what year did the Gators win their first national championship?",
+        options: ["A. 1996", "B. 2000", "C. 1985", "D. 2006"],
+        answer: "A"
+    },
+    {
+        question: "What nickname is associated with the Florida Gators home stadium?",
+        options: ["A. The Swamp", "B. The Pit", "C. The Pond", "D. Gator Ground"],
+        answer: "A"
+    },
+    {
+        question: "Who won the Heisman Trophy as a Florida Gator in 2007?",
+        options: ["A. Tim Tebow", "B. Danny Wuerffel", "C. Rex Grossman", "D. Emmitt Smith"],
+        answer: "A"
+    },
+    {
+        question: "How many Heisman Trophy winners have played for the Florida Gators?",
+        options: ["A. 3", "B. 2", "C. 4", "D. 1"],
+        answer: "A"
+    },
+    {
+        question: "Who was Florida's first-ever Heisman Trophy winner?",
+        options: ["A. Steve Spurrier", "B. Danny Wuerffel", "C. Tim Tebow", "D. Rex Grossman"],
+        answer: "A"
+    },
+    {
+        question: "Which Florida coach coined the phrase 'The Swamp'?",
+        options: ["A. Steve Spurrier", "B. Urban Meyer", "C. Ron Zook", "D. Jim McElwain"],
+        answer: "A"
+    },
+    {
+        question: "How many national championships have the Gators won as of 2024?",
+        options: ["A. 3", "B. 4", "C. 2", "D. 5"],
+        answer: "A"
+    },
+    {
+        question: "What team did Florida defeat in the 2006 national championship game?",
+        options: ["A. Ohio State", "B. Oklahoma", "C. Alabama", "D. Miami"],
+        answer: "A"
+    },
+    {
+        question: "Which Gator holds the record for most career rushing yards?",
+        options: ["A. Errict Rhett", "B. Emmitt Smith", "C. Fred Taylor", "D. Percy Harvin"],
+        answer: "B"
+    },
+    {
+        question: "Who is Florida’s all-time leader in passing touchdowns?",
+        options: ["A. Danny Wuerffel", "B. Rex Grossman", "C. Tim Tebow", "D. Chris Leak"],
+        answer: "C"
+    },
+    {
+        question: "Who was the head coach of the Gators during their 2008 national championship win?",
+        options: ["A. Urban Meyer", "B. Steve Spurrier", "C. Jim McElwain", "D. Ron Zook"],
+        answer: "A"
+    },
+    {
+        question: "What year did the Florida Gators football program join the SEC?",
+        options: ["A. 1932", "B. 1933", "C. 1928", "D. 1930"],
+        answer: "B"
+    },
+    {
+        question: "Which rival team does Florida face annually in the 'World's Largest Outdoor Cocktail Party'?",
+        options: ["A. Georgia", "B. Tennessee", "C. Florida State", "D. Alabama"],
+        answer: "A"
+    },
+    {
+        question: "Which Gator player was drafted first overall in the 1965 NFL Draft?",
+        options: ["A. Steve Spurrier", "B. Jack Youngblood", "C. Tom Shannon", "D. Tucker Frederickson"],
+        answer: "D"
+    },
+    {
+        question: "What is the Gators' fight song called?",
+        options: ["A. Orange and Blue", "B. Gator Fight", "C. Go Gators", "D. Florida Victory"],
+        answer: "A"
+    },
+    {
+        question: "Who did the Gators defeat to win the 1996 national championship?",
+        options: ["A. Florida State", "B. Miami", "C. Tennessee", "D. Nebraska"],
+        answer: "A"
+    },
+    {
+        question: "Who is the Gators' all-time leading receiver in career yardage?",
+        options: ["A. Carlos Alvarez", "B. Jabar Gaffney", "C. Percy Harvin", "D. Kadarius Toney"],
+        answer: "A"
+    },
+    {
+        question: "What year did the Gators last win the SEC Championship?",
+        options: ["A. 2008", "B. 2020", "C. 2016", "D. 2006"],
+        answer: "A"
+    },
+    {
+        question: "What conference was Florida part of before joining the SEC?",
+        options: ["A. Southern Conference", "B. Atlantic Coast Conference", "C. Big Ten", "D. Gulf Coast Conference"],
+        answer: "A"
+    },
+    {
+        question: "Which Gators quarterback was a finalist for the Heisman Trophy in 2001?",
+        options: ["A. Rex Grossman", "B. Tim Tebow", "C. Chris Leak", "D. Doug Johnson"],
+        answer: "A"
+    },
+    {
+        question: "Who led the Gators in receiving yards during their 2006 national championship season?",
+        options: ["A. Dallas Baker", "B. Percy Harvin", "C. Andre Caldwell", "D. Cornelius Ingram"],
+        answer: "A"
+    },
+    {
+        question: "Which Florida Gator had a breakout performance in the 2009 SEC Championship Game?",
+        options: ["A. Tim Tebow", "B. Riley Cooper", "C. Brandon Spikes", "D. Carlos Dunlap"],
+        answer: "B"
+    },
+    {
+        question: "Who did Florida play in their first-ever game at Ben Hill Griffin Stadium?",
+        options: ["A. Auburn", "B. Alabama", "C. Georgia Tech", "D. Miami"],
+        answer: "C"
+    }
+]; // Placeholder for questions array
+        let currentQuestion = 0;
+        let score = 0;
+        const incorrectAnswers = [];
+
+        function loadQuestion() {
+            if (currentQuestion >= questions.length) {
+                showResults();
+                return;
+            }
+            const questionObj = questions[currentQuestion];
+            document.getElementById("question").textContent = questionObj.question;
+            const optionsDiv = document.getElementById("options");
+            optionsDiv.innerHTML = "";
+            questionObj.options.forEach(option => {
+                const button = document.createElement("button");
+                button.textContent = option;
+                button.onclick = () => checkAnswer(option);
+                optionsDiv.appendChild(button);
+            });
+        }
+
+        function checkAnswer(selectedOption) {
+            const current = questions[currentQuestion];
+            if (selectedOption.startsWith(current.answer)) {
+                score++;
+            } else {
+                incorrectAnswers.push(`Question: ${current.question}, Your Answer: ${selectedOption}, Correct Answer: ${current.answer}`);
+            }
+            currentQuestion++;
+            loadQuestion();
+        }
+
+        function showResults() {
+            const quizDiv = document.getElementById("quiz");
+            quizDiv.innerHTML = `
+                <div class="result">
+                    <h2>Quiz Complete!</h2>
+                    <p>Your Score: ${score}/${questions.length}</p>
+                    <h3>Incorrect Answers:</h3>
+                    <ul>${incorrectAnswers.map(ans => `<li>${ans}</li>`).join("")}</ul>
+                </div>
+            `;
+        }
+
+        loadQuestion(); // Start the quiz
+    </script>
+</body>
+</html>
+
+
